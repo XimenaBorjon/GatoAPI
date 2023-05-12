@@ -22,6 +22,11 @@ namespace GatoAPI.Repositories
             return Context.Find<T>(id);
         }
 
+        public Jugador GetByName(string name)
+        {
+            return Context.Jugador.Where(x=>x.Nombre == name).FirstOrDefault();
+        }
+
         public void Insert(T entity)
         {
             Context.Add(entity);

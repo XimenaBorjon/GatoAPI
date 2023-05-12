@@ -24,6 +24,20 @@ namespace GatoAPI.Controller
             return Ok(gatoRepository.GetAll());
         }
 
+        [HttpGet("{nombre}")]
+        public IActionResult GetByName(string nombre)
+        {
+            var j = gatoRepository.GetByName(nombre);
+            if (j!=null)
+            {
+                return Ok(j);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
         [HttpPost]
         public  IActionResult Post(Jugador jugador)
         {
@@ -52,7 +66,6 @@ namespace GatoAPI.Controller
 
             try
             {
-              
                 j.Id = jugador.Id;
                 j.Nombre = jugador.Nombre;
                 j.PartidasGanadas = jugador.PartidasGanadas + 1;
